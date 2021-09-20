@@ -44,7 +44,16 @@ async fn quote(ctx: &Context, msg: &Message) -> CommandResult {
         serde_json::from_reader(file).expect("file should be proper JSON!");
     let index = rand::thread_rng().gen_range(0..json.as_array().unwrap().len() + 1);
     let quote = format!(
-        "{quote} - {author}",
+        "
+```
+         ({quote} - {author})
+         .     /
+  \\_____)\\_____
+   /--v____ __`<
+           )/
+           '
+```
+        ",
         quote = &json[index]["text"],
         author = &json[index]["author"].to_string().replace("\"", "")
     );
