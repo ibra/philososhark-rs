@@ -7,5 +7,5 @@ edition = "2018"
 serenity = "0.10"
 serde_json = "1.0.68"
 rand = "0.8.4"
-ferris-says = "0.2.1"
+calfsay = "0.1.3"
 tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }

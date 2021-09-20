@@ -6,6 +6,7 @@ use serenity::framework::standard::{
     CommandResult, StandardFramework,
 };
 use serenity::model::channel::Message;
+use std::env;
 use std::fs::File;
 #[group]
 #[commands(quote)]
@@ -19,11 +20,11 @@ impl EventHandler for Handler {}
 #[tokio::main]
 async fn main() {
     let framework = StandardFramework::new()
-        .configure(|c| c.prefix("~")) // set the bot's prefix to "~"
+        .configure(|c| c.prefix(">")) // set the bot's prefix to ">"
         .group(&GENERAL_GROUP);
 
     // Login with a bot token from the environment
-    let token = "ODY5NTQwNjMzODYwMjU5ODQw.YP_s0g.Xtq8czI1irrP-gT6lm6hATXftr0";
+    let token = &env::var("DISCORD_TOKEN").unwrap(); // get the token from the environment
     let mut client = Client::builder(token)
         .event_handler(Handler)
         .framework(framework)
